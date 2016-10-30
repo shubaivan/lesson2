@@ -2,15 +2,15 @@ require 'colorize'
 require 'yaml'
 
 class Ball
+  ANSWERS = YAML.load_file(File.join(__dir__, '/answers.yml'))
+
   def shake
     puts 'Answer'
     gets.chomp
-
-    array_answer = YAML.load_file(File.join(__dir__, '/answers.yml'))
-    randon_element_array = array_answer.sample
-    key_random_element = array_answer.index(randon_element_array)
+    randon_element_array = ANSWERS.sample
+    key_random_element = ANSWERS.index(randon_element_array)
     color = get_color key_random_element
-    # randon_element_array.to_s.colorize(color.to_sym)
+    randon_element_array.to_s.colorize(color.to_sym)
     colorize(randon_element_array.to_s, color)
   end
 
