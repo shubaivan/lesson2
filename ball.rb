@@ -2,6 +2,9 @@ require 'colorize'
 require 'yaml'
 class Ball
   def shake
+    puts'Answer'
+    put_name = gets.chomp
+
     array_answer = YAML.load_file(File.join(__dir__, '/answers.yml'))
     randon_element_array = array_answer.sample
     key_random_element = array_answer.index(randon_element_array)
