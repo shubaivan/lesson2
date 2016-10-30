@@ -1,13 +1,11 @@
-class Drakon
-  # Hedgehog
-
+class Hedgehog
   def initialize name
     @name = name
     @asleep = false
     @stuffInBelly     = 10  #  Он сыт.
     @stuffInIntestine =  0  #  Ему не надо гулять.
 
-    puts 'Ёжик ' + @name + ' родился.'
+    puts @name + ' родился.'
   end
 
   def feed
@@ -56,17 +54,25 @@ class Drakon
     end
   end
 
-  def console
-    command = gets.chomp
-    command == 'exit'
+  def help
+    puts 'Available commands ' + self.class.instance_methods(false)
+  end
 
-    until command == 'exit'
-       case command
-         when 'rock'
-           rock
-         else
-           "this command #{command} was not found."
-       end
+  def console_get
+    console
+  end
+
+  protected
+
+  def console
+    loop do
+      command = gets.chomp
+      class_def = self.class.instance_methods(false)
+      acess = false
+      class_def.each {|x| (acess = true, self.public_send(x)) if command == x.to_s}
+      puts "this command '#{command}' was not found." unless acess
+
+      break if command == 'exit'
     end
   end
 
