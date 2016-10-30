@@ -11,7 +11,7 @@ class Ball
   end
 
   def key(randon_element_array)
-    puts ANSWERS.index(randon_element_array)
+    ANSWERS.index(randon_element_array)
   end
 
   def color_shake
