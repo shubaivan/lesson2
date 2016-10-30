@@ -20,7 +20,7 @@ class Hedgehog
     time_iteratin_day
   end
 
-  def rock
+  def lets_rock
     puts 'Вы нежно укачиваете ' + @name + '(а).'
     @asleep = true
     puts 'Он быстро задрёмывает...'
