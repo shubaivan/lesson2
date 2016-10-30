@@ -24,11 +24,18 @@ class Ball
   end
 
   def get_color(key)
-    color = '0;30'
-    color = '0;34' if key >= 0 && key <= 4
-    color = '0;32' if key >= 5 && key <= 9
-    color = '0;33;49' if key >= 10 && key <= 14
-    color = '0;31' if key >= 15 && key <= 19
+    case key
+      when 0...4
+        color = '0;34'
+      when 5...9
+        color = '0;32'
+      when 10...14
+        color = '0;33;49'
+      when 15...19
+        color = '0;31'
+      else
+        color = '0;30'
+    end
     color
   end
 
