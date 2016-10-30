@@ -5,12 +5,21 @@ class Ball
   ANSWERS = YAML.load_file(File.join(__dir__, '/answers.yml'))
 
   def shake
+    ANSWERS.sample
+  end
+
+  def key(randon_element_array)
+    ANSWERS.index(randon_element_array)
+  end
+
+  def color_shake
     puts 'Answer'
     gets.chomp
-    randon_element_array = ANSWERS.sample
-    key_random_element = ANSWERS.index(randon_element_array)
+    randon_element_array = shake
+    key_random_element = key randon_element_array
     color = get_color key_random_element
     randon_element_array.to_s.colorize(color.to_sym)
+
     colorize(randon_element_array.to_s, color)
   end
 
