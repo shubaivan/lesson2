@@ -22,12 +22,11 @@ class Hedgehog
 
   def lets_rock
     puts 'Вы нежно укачиваете ' + @name + '(а).'
-    @asleep = true
-    puts 'Он быстро задрёмывает...'
+    @hunger -= 1
+    @sleep += 1
     time_iteratin_day
-    if @asleep
-      @asleep = false
-      puts '...но просыпается, как только вы перестали качать.'
+    if if_sleep?
+      puts 'Он внезапно заснул голодным!'
     end
   end
 
@@ -38,6 +37,18 @@ class Hedgehog
 
   def lets_check_hungry
     puts @hunger
+  end
+
+  def lets_check_slep
+    puts @sleep
+  end
+
+  def lets_check_mood
+    puts @mood
+  end
+
+  def lets_check_life
+    puts @life
   end
 
   def lets_help
@@ -69,23 +80,32 @@ class Hedgehog
   end
 
   def if_sleep?
-    @hunger <= 5 && @sleep
+    @hunger <= 5 && @sleep >= 5
   end
 
   def if_mood_off?
     @mood <= 5
   end
 
+  def if_life?
+    @life == 0
+  end
+
   def time_iteratin_day
     @hunger -= 1
-    @sleep -= 1
+    @sleep += 1
     @mood -= 1
+    @life -= 2
     if hungry?
       puts 'В желудке у ' + @name + '(а) урчит...'
     end
 
     if if_sleep?
       puts 'Он внезапно заснул голодным!'
+    end
+
+    if if_life?
+      puts 'Он отправился в лучший мир, но ты не грусти'
     end
   end
 end
